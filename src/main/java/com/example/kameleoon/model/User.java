@@ -7,9 +7,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long usedId;
-    @Column(name = "LOGIN", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String login;
-    @Column(name = "PASSWORD", nullable = false)
+    @Column(nullable = false)
     private String password;
 
     public User(String login, String password) {

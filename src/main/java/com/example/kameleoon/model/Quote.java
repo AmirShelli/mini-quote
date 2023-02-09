@@ -7,13 +7,13 @@ public class Quote {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long quoteId;
-    @Column(name = "TEXT", nullable = false)
+    @Column(nullable = false)
     private String text;
 
-    @Column(name = "AUTHOR",nullable = false)
+    @Column(nullable = false)
     private String author;
 
-    @Column(name = "VOTES",nullable = false)
+    @Column(nullable = false)
     private Integer votes;
 
     public Quote(String text, String author) {
