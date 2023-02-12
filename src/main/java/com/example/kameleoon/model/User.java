@@ -1,21 +1,38 @@
 package com.example.kameleoon.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.sql.Timestamp;
 
 @Entity
-@Table (name = "USER")
+@Table (name = "USERS")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column (name = "userId")
     private Long userId;
     @Column(nullable = false, unique = true)
-    private String login;
+    private String name;
     @Column(nullable = false)
     private String password;
+    @Column(nullable = false, unique = true)
+    private String email;
+    @CreationTimestamp
+    @Column(updatable = false)
+    private Timestamp createdAt;
 //    private ArrayList<Quotes> LastVotes;
 
-    public User(String login, String password) {
-        this.login = login;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public User(String name, String password) {
+        this.name = name;
         this.password = password;
     }
 
@@ -23,12 +40,12 @@ public class User {
 
     }
 
-    public String getLogin() {
-        return login;
+    public String getName() {
+        return name;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setName(String login) {
+        this.name = login;
     }
 
     public String getPassword() {

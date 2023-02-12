@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS "USER";
-CREATE TABLE "USER" (
+DROP TABLE IF EXISTS "USERS";
+CREATE TABLE "USERS" (
                       userId INT AUTO_INCREMENT  PRIMARY KEY,
                       login VARCHAR(50) NOT NULL,
                       password VARCHAR(50) NOT NULL
