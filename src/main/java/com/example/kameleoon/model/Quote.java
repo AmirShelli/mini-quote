@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 public class Quote {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column (name = "quote_Id")
     private Long quoteId;
     @Column(nullable = false)
     private String text;
