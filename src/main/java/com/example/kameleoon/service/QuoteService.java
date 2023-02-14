@@ -17,7 +17,7 @@ public class QuoteService {
     public Quote updateQuote(Long id, Quote updatedQuote) {
         Quote quote = quoteRepository.getOne(id);
         quote.setText(updatedQuote.getText());
-        quote.setAuthor(updatedQuote.getAuthor());
+        quote.setUser(updatedQuote.getUser());
         return quoteRepository.save(quote);
     }
 

@@ -11,7 +11,9 @@ CREATE TABLE "USERS" (
 DROP TABLE IF EXISTS "QUOTE";
 CREATE TABLE "QUOTE" (
                         quote_Id INT AUTO_INCREMENT  PRIMARY KEY,
+                        user_Id INT NOT NULL,
                         text VARCHAR(50) NOT NULL,
-                        author VARCHAR(50) NOT NULL,
-                        votes INT NOT NULL
+                        votes INT NOT NULL,
+                        foreign key (user_Id) references USERS(user_Id)
+
 );

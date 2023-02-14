@@ -1,6 +1,8 @@
 package com.example.kameleoon.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "QUOTE")
@@ -8,51 +10,24 @@ public class Quote {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column (name = "quote_Id")
+    @Getter @Setter
     private Long quoteId;
     @Column(nullable = false)
+    @Getter @Setter
     private String text;
     @Column(nullable = false)
-    private String author;
-
-    @Column(nullable = false)
+    @Getter @Setter
     private Integer votes;
-    public Quote(String text, String author) {
+    @ManyToOne
+    @JoinColumn(name="user_Id", nullable=false)
+    @Getter @Setter
+    private User user;
+    public Quote(String text, User user) {
         this.text = text;
-        this.author = author;
+        this.user = user;
     }
 
     public Quote() {
 
-    }
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public Integer getVotes() {
-        return votes;
-    }
-
-    public void setVotes(Integer votes) {
-        this.votes = votes;
-    }
-
-    public void setQuoteId(Long quoteId) {
-        this.quoteId = quoteId;
-    }
-
-    public Long getQuoteId() {
-        return quoteId;
     }
 }
