@@ -16,24 +16,31 @@ public class QuoteService {
     @Autowired
     private UserRepository userRepository;
 
-    public Quote updateQuote(Long id, Quote updatedQuote) {
-        Quote quote = quoteRepository.getOne(id);
-        quote.setText(updatedQuote.getText());
-        return quoteRepository.save(quote);
-    }
-
-    public Quote addQuote(String text, Long userId) throws Exception {
+    public void addQuote(String text, Long userId) throws Exception {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new Exception("User not found with id: " + userId));
-
-        Quote quote = new Quote(text, user);
-        return quoteRepository.save(quote);
+        quoteRepository.save(new Quote(text, user));
     }
-    public void deleteQuote(Long id) {
-        quoteRepository.deleteById(id);
+    public void updateQuote(String updatedText, Long userId, Long quoteId) throws Exception {
+        userRepository.findById(userId)
+                .orElseThrow(() -> new Exception("User not found with id: " + userId));
+        Quote quote = quoteRepository.findById(quoteId)
+                .orElseThrow(() -> new Exception("Quote not found with id: " + quoteId));
+        quote.setText(updatedText);
+        quoteRepository.save(quote);
     }
-    public List<Quote> getAllQuotesFromUser(User user) {
+    public void deleteQuote(Long quoteId, Long userId) throws Exception {
+        userRepository.findById(userId)
+                .orElseThrow(() -> new Exception("User not found with id: " + userId));
+        quoteRepository.deleteById(quoteId);
+    }
+    public List<Quote> getAllQuotesFromUser(Long userId) throws Exception {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new Exception("User not found with id: " + userId));
         return quoteRepository.findAllByUser(user).stream().toList();
+    }
+    public List<Quote> getAllQuotes() {
+        return quoteRepository.findAll();
     }
     public String listToString(List<Quote> quotes) {
         StringBuilder sb = new StringBuilder();
@@ -44,8 +51,5 @@ public class QuoteService {
                     .append(user.getName()).append("\n");
         }
         return sb.toString();
-    }
-    public List<Quote> getAllQuotes() {
-        return quoteRepository.findAll();
     }
 }

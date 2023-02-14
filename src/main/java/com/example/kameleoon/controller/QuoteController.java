@@ -1,25 +1,18 @@
 package com.example.kameleoon.controller;
 
 import com.example.kameleoon.dto.QuoteDTO;
-import com.example.kameleoon.model.Quote;
 import com.example.kameleoon.model.Status;
-import com.example.kameleoon.model.User;
 import com.example.kameleoon.service.QuoteService;
-import com.example.kameleoon.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping
 public class QuoteController {
     @Autowired
     private QuoteService quoteService;
-    @Autowired
-    private UserService userService;
 
-    @PostMapping("/quote/{userId}/addQuote")
+    @PostMapping("/{userId}/addQuote")
     public Status addQuote(@RequestBody QuoteDTO quoteDTO, @PathVariable @RequestAttribute("userId") Long userId) {
         try {
             quoteService.addQuote(quoteDTO.getText(), userId);
@@ -28,12 +21,20 @@ public class QuoteController {
         }
         return Status.SUCCESS;
     }
-    @PostMapping("/quote/{userId}/getAllQuotes")
+    @PostMapping("/{userId}/updateQuote/{quoteId}")
+    public Status updateQuote(@RequestBody QuoteDTO quoteDTO, @PathVariable @RequestAttribute("userId") Long userId,
+                              @PathVariable @RequestAttribute("quoteId") Long quoteId){
+        try {
+            quoteService.updateQuote(quoteDTO.getText(), userId, quoteId);
+        } catch (Exception e) {
+            return Status.FAILURE;
+        }
+        return Status.SUCCESS;
+    }
+    @PostMapping("/{userId}/getAllQuotes")
     public String getAllQuotesFromUser(@PathVariable @RequestAttribute("userId") Long userId) {
         try {
-            User user = userService.getUserById(userId);
-            List<Quote> quotes = quoteService.getAllQuotesFromUser(user);
-            return quoteService.listToString(quotes);
+            return quoteService.listToString(quoteService.getAllQuotesFromUser(userId));
         } catch (Exception e) {
             return Status.USER_DOES_NOT_EXIST.toString();
         }
@@ -45,6 +46,17 @@ public class QuoteController {
         } catch (Exception e) {
             return Status.USER_DOES_NOT_EXIST.toString();
         }
+    }
+
+    @PostMapping("/{userId}/deleteQuote/{quoteId}")
+    public Status deleteQuoteFromUser(@PathVariable Long userId, @PathVariable @RequestAttribute("userId") Long quoteId)
+    {
+        try{
+            quoteService.deleteQuote(quoteId, userId);
+        }catch (Exception e) {
+            return Status.USER_DOES_NOT_EXIST;
+        }
+        return Status.SUCCESS;
     }
 
 }

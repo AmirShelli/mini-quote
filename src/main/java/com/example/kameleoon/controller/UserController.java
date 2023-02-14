@@ -15,25 +15,15 @@ import java.util.Optional;
 @RestController
 @RequestMapping
 public class UserController {
-
-    @Autowired
-    private UserRepository userRepository;
     @Autowired
     private UserService userService;
     @PostMapping("/user/register")
-    public Status registerUser(@Validated @RequestBody RegisterDTO registerDTO) {
-        if(registerDTO.getName() == null || registerDTO.getEmail() == null || registerDTO.getPassword() == null)
+    public Status registerUser(@Valid @RequestBody RegisterDTO registerDTO) {
+        try {
+            userService.createUser(registerDTO);
+        } catch (Exception e) {
             return Status.FAILURE;
-        System.out.println("Registered user: " + registerDTO);
-        if (userRepository.existsByEmail(registerDTO.getEmail())) {
-            return Status.USER_ALREADY_EXISTS;
         }
-
-        User user = new User();
-        user.setName(registerDTO.getName());
-        user.setEmail(registerDTO.getEmail());
-        user.setPassword(registerDTO.getPassword());
-        userRepository.save(user);
         return Status.SUCCESS;
     }
     @PostMapping("/user/login")
@@ -49,13 +39,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public String findUserById(@PathVariable(value = "id") long id) {
-        Optional<User> user = userRepository.findById(id);
-        return user.toString();
+    public String findUserById(@PathVariable long id) {
+        try {
+            User user = userService.getUserById(id);
+            return user.toString();
+        } catch (Exception e) {
+            return Status.USER_DOES_NOT_EXIST.toString();
+        }
     }
 
-    @GetMapping
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
-    }
 }
