@@ -9,8 +9,16 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public User getUserByEmail(String email) throws Exception
+    {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new Exception("User not found with email: "+ email));
+    }
+    public User getUserById(Long id) throws Exception {
+        return userRepository.findById(id)
+                .orElseThrow(() ->
+                        new Exception("User not found with ID: "+ id));
     }
     public User createUser(User user) {
         return userRepository.save(user);

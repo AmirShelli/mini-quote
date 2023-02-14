@@ -8,11 +8,13 @@ import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 import java.util.Queue;
 
 @Entity
 @Table (name = "USERS")
+@ToString
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,8 +38,8 @@ public class User {
     @Getter @Setter
     private Boolean loggedIn;
 
-    @OneToMany(mappedBy = "users")
-    private Queue<Quote> quotes;
+    @OneToMany(mappedBy = "user")
+    private List<Quote> quotes;
 
     public User(String name, String password) {
         this.name = name;

@@ -1,4 +1,4 @@
-package com.example.kameleoon.payload;
+package com.example.kameleoon.dto;
 import lombok.Data;
 
 import java.sql.Timestamp;
