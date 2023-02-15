@@ -7,6 +7,7 @@ import com.example.kameleoon.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -52,9 +53,23 @@ public class QuoteService {
         for(Quote quote : quotes) {
             User user = quote.getUser();
             sb.append(quote.getText()).append(" | ")
-                    .append(quote.getVotes()).append(" ")
+                    .append(quote.getNumberOfVotes()).append(" ")
                     .append(user.getName()).append("\n");
         }
         return sb.toString();
+    }
+    public List<Quote> getTopTenQuotes() {
+        List<Quote> resultList = quoteRepository.findTopTenQuotes();
+        List<Quote> topTenQuotes = new ArrayList<>();
+        for (int i = 0; i < Math.min(10, resultList.size()); i++)
+            topTenQuotes.add(resultList.get(i));
+        return topTenQuotes;
+    }
+    public List<Quote> getFlopTenQuotes() {
+        List<Quote> resultList = quoteRepository.findFlopTenQuotes();
+        List<Quote> topTenQuotes = new ArrayList<>();
+        for (int i = 0; i < Math.min(10, resultList.size()); i++)
+            topTenQuotes.add(resultList.get(i));
+        return topTenQuotes;
     }
 }

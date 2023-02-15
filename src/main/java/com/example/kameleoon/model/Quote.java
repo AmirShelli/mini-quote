@@ -34,7 +34,8 @@ public class Quote {
     public Quote() {
 
     }
-    public int getVotes() {
-        return votes.size();
+    public Integer getNumberOfVotes() {
+        return votes.stream().map(Vote::getValue)
+                .reduce(0, Integer::sum);
     }
 }

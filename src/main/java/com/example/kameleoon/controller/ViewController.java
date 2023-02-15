@@ -1,22 +1,23 @@
 package com.example.kameleoon.controller;
 
+import com.example.kameleoon.service.QuoteService;
+import com.example.kameleoon.service.VoteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ViewController {
-
-
-    @GetMapping("/topQuotes")
+    @Autowired
+    private QuoteService quoteService;
+    @GetMapping("/topTenQuotes")
     public String viewTopTenQuotes() {
-
-        return "Welcome to my application";
+        return quoteService.listToString(quoteService.getTopTenQuotes());
     }
 
-    @GetMapping("/flopQuotes")
+    @GetMapping("/flopTenQuotes")
     public String viewFlopTenQuotes() {
-
-        return "This is an example endpoint";
+        return quoteService.listToString(quoteService.getFlopTenQuotes());
     }
 
 }
