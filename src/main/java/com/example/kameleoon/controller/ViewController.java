@@ -1,8 +1,9 @@
 package com.example.kameleoon.controller;
 
+import com.example.kameleoon.model.Status;
 import com.example.kameleoon.service.QuoteService;
-import com.example.kameleoon.service.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,13 +12,13 @@ public class ViewController {
     @Autowired
     private QuoteService quoteService;
     @GetMapping("/topTenQuotes")
-    public String viewTopTenQuotes() {
-        return quoteService.listToString(quoteService.getTopTenQuotes());
+    public ResponseEntity<String> viewTopTenQuotes() {
+        return Status.SUCCESS.toResponseEntity(quoteService.listToString(quoteService.getTopTenQuotes()));
     }
 
     @GetMapping("/flopTenQuotes")
-    public String viewFlopTenQuotes() {
-        return quoteService.listToString(quoteService.getFlopTenQuotes());
+    public ResponseEntity<String> viewFlopTenQuotes() {
+        return Status.SUCCESS.toResponseEntity(quoteService.listToString(quoteService.getFlopTenQuotes()));
     }
 
 }

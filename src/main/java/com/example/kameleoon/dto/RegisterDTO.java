@@ -1,13 +1,13 @@
 package com.example.kameleoon.dto;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.sql.Timestamp;
 
 @Data
+@AllArgsConstructor
 public class RegisterDTO {
-    private Long user_Id;
     private String name;
     private String email;
     private String password;
-    private Timestamp created_At;
+
 }

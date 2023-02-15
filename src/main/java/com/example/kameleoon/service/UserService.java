@@ -21,15 +21,15 @@ public class UserService {
                 .orElseThrow(() ->
                         new Exception("User not found with ID: "+ id));
     }
-    public void createUser(RegisterDTO newUser) throws Exception{
+    public User createUser(RegisterDTO newUser) throws Exception{
         if (!userRepository.existsByEmail(newUser.getEmail())) {
             User user = new User();
             user.setName(newUser.getName());
             user.setEmail(newUser.getEmail());
             user.setPassword(newUser.getPassword());
-            userRepository.save(user);
-        }
-        throw (new Exception(("User with this email already Exists!")));
+            return userRepository.save(user);
+        } else
+            throw (new Exception(("User with this email already Exists!")));
     }
 
 }
