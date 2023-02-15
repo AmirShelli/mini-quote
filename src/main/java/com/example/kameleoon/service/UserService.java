@@ -1,7 +1,6 @@
 package com.example.kameleoon.service;
 
 import com.example.kameleoon.dto.RegisterDTO;
-import com.example.kameleoon.model.Status;
 import com.example.kameleoon.model.User;
 import com.example.kameleoon.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +24,9 @@ public class UserService {
     public void createUser(RegisterDTO newUser) throws Exception{
         if (!userRepository.existsByEmail(newUser.getEmail())) {
             User user = new User();
-            user.setName(registerDTO.getName());
-            user.setEmail(registerDTO.getEmail());
-            user.setPassword(registerDTO.getPassword());
+            user.setName(newUser.getName());
+            user.setEmail(newUser.getEmail());
+            user.setPassword(newUser.getPassword());
             userRepository.save(user);
         }
         throw (new Exception(("User with this email already Exists!")));

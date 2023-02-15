@@ -19,7 +19,10 @@ public class QuoteService {
     public void addQuote(String text, Long userId) throws Exception {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new Exception("User not found with id: " + userId));
-        quoteRepository.save(new Quote(text, user));
+        Quote quote = new Quote(text, user);
+        user.addQuote(quote);
+        quoteRepository.save(quote);
+        userRepository.save(user);
     }
     public void updateQuote(String updatedText, Long userId, Long quoteId) throws Exception {
         userRepository.findById(userId)
@@ -32,6 +35,8 @@ public class QuoteService {
     public void deleteQuote(Long quoteId, Long userId) throws Exception {
         userRepository.findById(userId)
                 .orElseThrow(() -> new Exception("User not found with id: " + userId));
+        quoteRepository.findById(quoteId)
+                .orElseThrow(() -> new Exception("Quote not found with id: " + quoteId));
         quoteRepository.deleteById(quoteId);
     }
     public List<Quote> getAllQuotesFromUser(Long userId) throws Exception {

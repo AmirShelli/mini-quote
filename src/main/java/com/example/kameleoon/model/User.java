@@ -1,16 +1,14 @@
 package com.example.kameleoon.model;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.Queue;
 
 @Entity
 @Table (name = "USERS")
@@ -33,7 +31,7 @@ public class User {
     @CreationTimestamp
     @Column(name = "created_At", updatable = false)
     @Getter @Setter
-    private Timestamp createdAt;
+    private Date createdAt;
     @Column(name = "logged_In")
     @Getter @Setter
     private Boolean loggedIn;
@@ -41,16 +39,25 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Quote> quotes;
 
-    public User(String name, String password) {
+    @OneToMany(mappedBy = "user")
+    private List<Vote> votes;
+
+
+    public User(String name, String email, String password) {
         this.name = name;
+        this.email = email;
         this.password = password;
     }
 
     public User() {
 
     }
-
-
+    public void addQuote(Quote quote) {
+        quotes.add(quote);
+    }
+    public void addVote(Vote vote) {
+        votes.add(vote);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

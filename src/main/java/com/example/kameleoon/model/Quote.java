@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "QUOTE")
 public class Quote {
@@ -15,19 +17,24 @@ public class Quote {
     @Column(nullable = false)
     @Getter @Setter
     private String text;
-    @Column(nullable = false)
-    @Getter @Setter
-    private Integer votes;
     @ManyToOne
     @JoinColumn(name="user_Id", nullable=false)
     @Getter @Setter
     private User user;
+
+    @OneToMany(mappedBy = "quote")
+    private List<Vote> votes;
+    public void addVote(Vote vote) {
+        votes.add(vote);
+    }
     public Quote(String text, User user) {
         this.text = text;
         this.user = user;
     }
-
     public Quote() {
 
+    }
+    public int getVotes() {
+        return votes.size();
     }
 }

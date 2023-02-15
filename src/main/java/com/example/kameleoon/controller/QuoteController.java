@@ -13,7 +13,7 @@ public class QuoteController {
     private QuoteService quoteService;
 
     @PostMapping("/{userId}/addQuote")
-    public Status addQuote(@RequestBody QuoteDTO quoteDTO, @PathVariable @RequestAttribute("userId") Long userId) {
+    public Status addQuote( @RequestBody QuoteDTO quoteDTO, @PathVariable @RequestAttribute("userId") Long userId) {
         try {
             quoteService.addQuote(quoteDTO.getText(), userId);
         } catch (Exception e) {
@@ -41,11 +41,7 @@ public class QuoteController {
     }
     @GetMapping("/quote/getAllQuotes")
     public String getAllQuotes() {
-        try {
-            return quoteService.listToString(quoteService.getAllQuotes());
-        } catch (Exception e) {
-            return Status.USER_DOES_NOT_EXIST.toString();
-        }
+        return quoteService.listToString(quoteService.getAllQuotes());
     }
 
     @PostMapping("/{userId}/deleteQuote/{quoteId}")
@@ -54,7 +50,7 @@ public class QuoteController {
         try{
             quoteService.deleteQuote(quoteId, userId);
         }catch (Exception e) {
-            return Status.USER_DOES_NOT_EXIST;
+            return Status.FAILURE;
         }
         return Status.SUCCESS;
     }

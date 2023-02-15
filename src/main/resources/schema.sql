@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS "VOTE";
 DROP TABLE IF EXISTS "QUOTE";
 DROP TABLE IF EXISTS "USERS";
 CREATE TABLE "USERS" (
@@ -15,4 +16,13 @@ CREATE TABLE "QUOTE" (
                         votes INT NOT NULL,
                         foreign key (user_Id) references USERS(user_Id)
 
+);
+CREATE TABLE VOTE (
+                      vote_id INT AUTO_INCREMENT PRIMARY KEY,
+                      user_id INT NOT NULL,
+                      quote_id INT NOT NULL,
+                      val INT,
+                      FOREIGN KEY (user_id) REFERENCES USERS (user_id),
+                      FOREIGN KEY (quote_id) REFERENCES QUOTE (quote_id),
+                      UNIQUE (user_id, quote_id)
 );
