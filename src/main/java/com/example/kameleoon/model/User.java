@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,7 +32,7 @@ public class User {
     @CreationTimestamp
     @Column(name = "created_At", updatable = false)
     @Getter @Setter
-    private Date createdAt;
+    private Timestamp createdAt;
     @Column(name = "logged_In")
     @Getter @Setter
     private Boolean loggedIn;

@@ -7,9 +7,6 @@ import com.example.kameleoon.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class QuoteService {
     @Autowired
@@ -31,6 +28,7 @@ public class QuoteService {
         Quote quote = quoteRepository.findById(quoteId)
                 .orElseThrow(() -> new Exception("Quote not found with id: " + quoteId));
         quote.setText(updatedText);
+        quote.setCreatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
         quoteRepository.save(quote);
     }
     public void deleteQuote(Long quoteId, Long userId) throws Exception {
@@ -39,37 +37,5 @@ public class QuoteService {
         quoteRepository.findById(quoteId)
                 .orElseThrow(() -> new Exception("Quote not found with id: " + quoteId));
         quoteRepository.deleteById(quoteId);
-    }
-    public List<Quote> getAllQuotesFromUser(Long userId) throws Exception {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new Exception("User not found with id: " + userId));
-        return quoteRepository.findAllByUser(user).stream().toList();
-    }
-    public List<Quote> getAllQuotes() {
-        return quoteRepository.findAll();
-    }
-    public String listToString(List<Quote> quotes) {
-        StringBuilder sb = new StringBuilder();
-        for(Quote quote : quotes) {
-            User user = quote.getUser();
-            sb.append(quote.getText()).append(" | ")
-                    .append(quote.getNumberOfVotes()).append(" ")
-                    .append(user.getName()).append("\n");
-        }
-        return sb.toString();
-    }
-    public List<Quote> getTopTenQuotes() {
-        List<Quote> resultList = quoteRepository.findTopTenQuotes();
-        List<Quote> topTenQuotes = new ArrayList<>();
-        for (int i = 0; i < Math.min(10, resultList.size()); i++)
-            topTenQuotes.add(resultList.get(i));
-        return topTenQuotes;
-    }
-    public List<Quote> getFlopTenQuotes() {
-        List<Quote> resultList = quoteRepository.findFlopTenQuotes();
-        List<Quote> topTenQuotes = new ArrayList<>();
-        for (int i = 0; i < Math.min(10, resultList.size()); i++)
-            topTenQuotes.add(resultList.get(i));
-        return topTenQuotes;
     }
 }

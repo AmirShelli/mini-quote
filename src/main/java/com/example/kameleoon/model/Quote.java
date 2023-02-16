@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +22,13 @@ public class Quote {
     @Column(name = "votes")
     @Getter
     private Integer numberOfVotes;
-
+    @Column(name = "created_At", nullable = false)
+    @Getter @Setter
+    private Timestamp createdAt;
     @ManyToOne
     @JoinColumn(name="user_Id", nullable=false)
     @Getter @Setter
     private User user;
-
     @OneToMany(mappedBy = "quote")
     @Getter
     private List<Vote> votes;
@@ -43,6 +45,15 @@ public class Quote {
         this.user = user;
         this.numberOfVotes = 0;
         this.votes = new ArrayList<>();
+    }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        User user = this.getUser();
+        sb.append(this.getText()).append(" | ")
+                .append(this.getNumberOfVotes()).append(" ")
+                .append(user.getName()).append("\n");
+        return sb.toString();
     }
     public Quote() {
 

@@ -32,18 +32,6 @@ public class QuoteController {
         }
         return Status.SUCCESS.toResponseEntity("Quote successfully updated.");
     }
-    @PostMapping("/{userId}/getAllQuotes")
-    public ResponseEntity<String> getAllQuotesFromUser(@PathVariable @RequestAttribute("userId") Long userId) {
-        try {
-            return Status.SUCCESS.toResponseEntity(quoteService.listToString(quoteService.getAllQuotesFromUser(userId)));
-        } catch (Exception e) {
-            return Status.FAILURE.toResponseEntity(e.getMessage());
-        }
-    }
-    @GetMapping("/getAllQuotes")
-    public ResponseEntity<String> getAllQuotes() {
-        return Status.SUCCESS.toResponseEntity(quoteService.listToString(quoteService.getAllQuotes()));
-    }
     @PostMapping("/{userId}/deleteQuote/{quoteId}")
     public ResponseEntity<String> deleteQuoteFromUser(@PathVariable Long userId, @PathVariable @RequestAttribute("userId") Long quoteId)
     {
