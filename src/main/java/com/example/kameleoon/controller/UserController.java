@@ -19,7 +19,7 @@ public class UserController {
         try {
             userService.createUser(registerDTO);
         }catch (Exception e) {
-            return Status.FAILURE.toResponseEntity("Please provide correct data.");
+            return Status.FAILURE.toResponseEntity(e.getMessage());
         }
         return Status.SUCCESS.toResponseEntity("User successfully added.");
     }
@@ -30,7 +30,7 @@ public class UserController {
             if(loginDTO.getPassword().equals(user.getPassword()))
                 return Status.SUCCESS.toResponseEntity("User successfully logged in.");
         } catch (Exception e) {
-            return Status.FAILURE.toResponseEntity("User not found.");
+            return Status.FAILURE.toResponseEntity(e.getMessage());
         }
         return Status.FAILURE.toResponseEntity("Please provide correct password.");
     }
@@ -41,7 +41,7 @@ public class UserController {
             User user = userService.getUserById(id);
             return Status.SUCCESS.toResponseEntity(user.toString());
         } catch (Exception e) {
-            return Status.FAILURE.toResponseEntity("User not found.");
+            return Status.FAILURE.toResponseEntity(e.getMessage());
         }
     }
 

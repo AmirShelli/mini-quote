@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -37,9 +38,11 @@ public class User {
     private Boolean loggedIn;
 
     @OneToMany(mappedBy = "user")
+    @Getter
     private List<Quote> quotes;
 
     @OneToMany(mappedBy = "user")
+    @Getter
     private List<Vote> votes;
 
 
@@ -47,15 +50,20 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.votes = new ArrayList<>();
+        this.quotes = new ArrayList<>();
     }
 
     public User() {
-
+        this.votes = new ArrayList<>();
+        this.quotes = new ArrayList<>();
     }
     public void addQuote(Quote quote) {
         quotes.add(quote);
     }
     public void addVote(Vote vote) {
+        if (votes == null)
+            votes = new ArrayList<>();
         votes.add(vote);
     }
     @Override

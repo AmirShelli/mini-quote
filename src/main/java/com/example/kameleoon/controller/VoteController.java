@@ -19,7 +19,7 @@ public class VoteController {
         try {
             voteService.addVote(userId, quoteId, new Vote(1));
         } catch (Exception e) {
-            return Status.FAILURE.toResponseEntity("Something went wrong.");
+            return Status.FAILURE.toResponseEntity(e.getMessage());
         }
         return Status.SUCCESS.toResponseEntity("Up voted!");
     }
@@ -28,7 +28,7 @@ public class VoteController {
         try {
             voteService.addVote(userId, quoteId, new Vote(-1));
         } catch (Exception e) {
-            return Status.FAILURE.toResponseEntity("Something went wrong.");
+            return Status.FAILURE.toResponseEntity(e.getMessage());
         }
         return Status.SUCCESS.toResponseEntity("Down voted!");
     }

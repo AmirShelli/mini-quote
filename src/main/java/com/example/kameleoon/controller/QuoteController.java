@@ -18,9 +18,9 @@ public class QuoteController {
         try {
             quoteService.addQuote(quoteDTO.getText(), userId);
         } catch (Exception e) {
-            return Status.FAILURE.toResponseEntity("Please check if quote exists.");
+            return Status.FAILURE.toResponseEntity(e.getMessage());
         }
-        return Status.SUCCESS.toResponseEntity("Quote successfully updated.");
+        return Status.SUCCESS.toResponseEntity("Quote successfully added.");
     }
     @PostMapping("/{userId}/updateQuote/{quoteId}")
     public ResponseEntity<String> updateQuote(@RequestBody QuoteDTO quoteDTO, @PathVariable @RequestAttribute("userId") Long userId,
@@ -28,7 +28,7 @@ public class QuoteController {
         try {
             quoteService.updateQuote(quoteDTO.getText(), userId, quoteId);
         } catch (Exception e) {
-            return Status.FAILURE.toResponseEntity("Please check if quote exists.");
+            return Status.FAILURE.toResponseEntity(e.getMessage());
         }
         return Status.SUCCESS.toResponseEntity("Quote successfully updated.");
     }
@@ -37,7 +37,7 @@ public class QuoteController {
         try {
             return Status.SUCCESS.toResponseEntity(quoteService.listToString(quoteService.getAllQuotesFromUser(userId)));
         } catch (Exception e) {
-            return Status.USER_DOES_NOT_EXIST.toResponseEntity("User not found with such an Id.");
+            return Status.FAILURE.toResponseEntity(e.getMessage());
         }
     }
     @GetMapping("/getAllQuotes")
@@ -50,7 +50,7 @@ public class QuoteController {
         try{
             quoteService.deleteQuote(quoteId, userId);
         }catch (Exception e) {
-            return Status.FAILURE.toResponseEntity("Please check if quote exists.");
+            return Status.FAILURE.toResponseEntity(e.getMessage());
         }
         return Status.SUCCESS.toResponseEntity("Quote successfully deleted.");
     }

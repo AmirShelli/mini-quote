@@ -23,10 +23,7 @@ public class UserService {
     }
     public User createUser(RegisterDTO newUser) throws Exception{
         if (!userRepository.existsByEmail(newUser.getEmail())) {
-            User user = new User();
-            user.setName(newUser.getName());
-            user.setEmail(newUser.getEmail());
-            user.setPassword(newUser.getPassword());
+            User user = new User(newUser.getName(), newUser.getEmail(), newUser.getPassword());
             return userRepository.save(user);
         } else
             throw (new Exception(("User with this email already Exists!")));

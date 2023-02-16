@@ -1,4 +1,5 @@
 package com.example.kameleoon.repository;
+
 import com.example.kameleoon.model.Quote;
 import com.example.kameleoon.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
