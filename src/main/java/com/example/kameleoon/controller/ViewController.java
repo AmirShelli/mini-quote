@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 public class ViewController {
     @Autowired
     private ViewService viewService;
+    @GetMapping("/")
+    public ResponseEntity<String> defaultView() {
+        return Status.SUCCESS.toResponseEntity("Welcome to the main page.");
+    }
     @GetMapping("/topTenQuotes")
     public ResponseEntity<String> viewTopTenQuotes() {
         return Status.SUCCESS.toResponseEntity(viewService.listToString(viewService.getTopTenQuotes()));

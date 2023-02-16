@@ -50,7 +50,21 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.example.Main</mainClass>  <!-- Change com.example.Main to your main class -->
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
+        <finalName>mini-quote-app</finalName>
     </build>
 
 </project>
