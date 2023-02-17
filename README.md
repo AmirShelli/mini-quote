@@ -12,7 +12,7 @@ docker run -t -p 80:8000 thebluemitsu/kameleoon-trial-test:kameleoon-test
 ```
 
 ## Usage
-I use Postman to test the application, however you can use any other way to send a request to the server.
+I use [Postman](https://web.postman.co) to test the application, however you can use any other way to send a request to the server.
 
 Here are the available endpoints; 
 ### from UserController
@@ -53,6 +53,6 @@ These endpoints allow you to view the quotes with different parameters.
 * #### /flopTenQuotes
 
 ## Example
-![image](https://user-images.githubusercontent.com/42302276/219621083-f08711e3-5dad-48e2-af01-ff75c01e9b72.png)
+![image](https://user-images.githubusercontent.com/42302276/219646273-95616657-1c98-4ea8-a476-34ce9f7eedbb.png)
 
 >Note: docker-compose.yaml file isn't set up properly just yet.
