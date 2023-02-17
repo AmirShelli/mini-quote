@@ -12,7 +12,7 @@ docker run -t -p 80:8000 thebluemitsu/kameleoon-trial-test:kameleoon-test
 ```
 
 ## Usage
-I use Postman to test the application, however you can use any other way to send a request to the server.
+I use [Postman](https://web.postman.co) to test the application, however you can use any other way to send a request to the server.
 
 Here are the available endpoints; 
 ### from UserController
