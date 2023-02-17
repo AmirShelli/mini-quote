@@ -53,6 +53,6 @@ These endpoints allow you to view the quotes with different parameters.
 * #### /flopTenQuotes
 
 ## Example
-![image](https://user-images.githubusercontent.com/42302276/219621083-f08711e3-5dad-48e2-af01-ff75c01e9b72.png)
+![image](https://user-images.githubusercontent.com/42302276/219646273-95616657-1c98-4ea8-a476-34ce9f7eedbb.png)
 
 >Note: docker-compose.yaml file isn't set up properly just yet.
