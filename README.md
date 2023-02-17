@@ -1,57 +1,58 @@
-I'm testing my API with Postman using raw JSON scripts.
+# Mini-quote
 
-![image](https://user-images.githubusercontent.com/42302276/219605095-213cbf82-363e-450d-b435-74f6a88f6ce1.png)
+A simple web-application using Spring framework and an in-memory database that enables you to create users for them to post quotes and vote for them. 
 
-Here is what you can test.
+## Installation
 
-**"/register"**
+Use the docker container from [my docker hub](https://hub.docker.com/repository/docker/thebluemitsu/kameleoon-trial-test/) to launch mini-quote.
 
-// first user in /register
-`{
-"name": "John Doe",
-"email": "johndoe@example.com",
-"password": "password"
-}`
+```bash
+docker pull thebluemitsu/kameleoon-trial-test:kameleoon-test
+docker run -t -p 80:8000 thebluemitsu/kameleoon-trial-test:kameleoon-test
+```
 
-// second user in /register
-`{
-"name": "John Snow",
-"email": "johnsnow@example.com",
-"password": "password"
-}`
+## Usage
+I use Postman to test the application, however you can use any other way to send a request to the server.
 
-**"/{user_Id}/addQuote"**
-
-// first quote in /1/addQuote
-`{
-"text": "hello, my name is John. I'm new to mini-reddit"
-}`
-
-// second quote in /1/addQuote
-`{
-"text": "hello, how are y'all doing?!"
+Here are the available endpoints; 
+### from UserController
+You can use the following JSON structure to create a user.
+* #### /register
+```json
+{
+    "name": "name",
+    "email": "name@example.com",
+    "password": "password"
 }
-`
+```
+### from QuoteController
+You can use the following JSON structure to add/update the needed quote accordingly or delete the quote from the database. 
+* #### /{user_Id}/addQuote
+```json
+{
+    "text": "hello, my name is Amir. I'm new to mini-quote."
+}
+```
+* #### /{user_Id}/{quote_Id}/updateQuote
+```json
+{
+    "text": "I think I changed my mind."
+}
+```
+* #### /{user_Id}/{quote_Id}/deleteQuote
+### from VoteController
+These endpoints allow you to up/down vote a quote.
+* #### /{user_Id}/{quote_Id}/upVote
+* #### /{user_Id}/{quote_Id}/downVote
+>Note: each user can up/down vote a quote only once!
+### from ViewController
+These endpoints allow you to view the quotes with different parameters.
+* #### /getAllQuotes
+* #### /getRandomQuote
+* #### /topTenQuotes
+* #### /flopTenQuotes
 
-**"/{user_Id}/{quote_Id}/updateQuote"**
+## Example
+![image](https://user-images.githubusercontent.com/42302276/219618932-248c99ad-9127-453d-9597-633b16ef927b.png)
 
-// second quote in /1/2/updateQuote
-`{
-"text": "hello, how are you all doing?"
-}`
-
-**"/{user_Id}/{quote_Id}/deleteQuote"**
-
-**"/{userId}/{quoteId}/upVote"** 
-
-**"/{userId}/{quoteId}/downVote"**
-
-**"/topTenQuotes"**
-
-**"/flopTenQuotes"**
-
-**"/getAllQuotes"**
-
-**"/getRandomQuote"**
-
-note: docker-compose file isn't set yet.
+>Note: docker-compose.yaml file isn't set up properly just yet.
