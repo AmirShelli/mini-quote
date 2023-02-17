@@ -22,7 +22,7 @@ public class QuoteController {
         }
         return Status.SUCCESS.toResponseEntity("Quote successfully added.");
     }
-    @PostMapping("/{userId}/updateQuote/{quoteId}")
+    @PostMapping("/{userId}/{quoteId}/updateQuote")
     public ResponseEntity<String> updateQuote(@RequestBody QuoteDTO quoteDTO, @PathVariable @RequestAttribute("userId") Long userId,
                               @PathVariable @RequestAttribute("quoteId") Long quoteId){
         try {
@@ -32,7 +32,7 @@ public class QuoteController {
         }
         return Status.SUCCESS.toResponseEntity("Quote successfully updated.");
     }
-    @PostMapping("/{userId}/deleteQuote/{quoteId}")
+    @PostMapping("/{userId}/{quoteId}/deleteQuote")
     public ResponseEntity<String> deleteQuoteFromUser(@PathVariable Long userId, @PathVariable @RequestAttribute("userId") Long quoteId)
     {
         try{
