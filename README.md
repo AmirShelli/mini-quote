@@ -1,5 +1,4 @@
-I'm testing my API with Postman using raw JSON.
-To test the app from the docker container you will have to access port 80.
+I'm testing my API with Postman using raw JSON scripts.
 
 ![image](https://user-images.githubusercontent.com/42302276/219605095-213cbf82-363e-450d-b435-74f6a88f6ce1.png)
 
@@ -54,3 +53,5 @@ Here is what you can test.
 **"/getAllQuotes"**
 
 **"/getRandomQuote"**
+
+note: docker-compose file isn't set yet.
