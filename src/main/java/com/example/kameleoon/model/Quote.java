@@ -12,9 +12,9 @@ import java.util.List;
 @Table(name = "QUOTE")
 public class Quote {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "quote_Id")
-    @Getter @Setter
+    @Getter
     private Long quoteId;
     @Column(nullable = false)
     @Getter @Setter
@@ -51,9 +51,9 @@ public class Quote {
         StringBuilder sb = new StringBuilder();
         User user = this.getUser();
         sb.append(this.getText()).append(" | ")
-                .append(this.getNumberOfVotes()).append(" ")
-                .append(createdAt.toString()).append(" ")
-                .append(user.getName()).append("\n");
+                .append(this.getNumberOfVotes()).append(" | ")
+                .append(user.getName()).append(" ")
+                .append(createdAt.toString()).append("\n");
         return sb.toString();
     }
     public Quote() {

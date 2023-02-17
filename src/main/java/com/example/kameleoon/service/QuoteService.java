@@ -18,8 +18,9 @@ public class QuoteService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new Exception("User not found with id: " + userId));
         Quote quote = new Quote(text, user);
-        user.addQuote(quote);
+        quote.setCreatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
         quoteRepository.save(quote);
+        user.addQuote(quote);
         userRepository.save(user);
     }
     public void updateQuote(String updatedText, Long userId, Long quoteId) throws Exception {

@@ -23,7 +23,7 @@ public class ViewController {
     public ResponseEntity<String> viewFlopTenQuotes() {
         return Status.SUCCESS.toResponseEntity(viewService.listToString(viewService.getFlopTenQuotes()));
     }
-    @PostMapping("/{userId}/getAllQuotes")
+    @PostMapping("/{userId}/getAllQuotes") // corrupted(
     public ResponseEntity<String> getAllQuotesFromUser(@PathVariable @RequestAttribute("userId") Long userId) {
         try {
             return Status.SUCCESS.toResponseEntity(viewService.listToString(viewService.getAllQuotesFromUser(userId)));

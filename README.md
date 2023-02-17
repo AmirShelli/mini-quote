@@ -46,8 +46,6 @@ Here is what you can test.
 
 **"/flopTenQuotes"**
 
-**"/{userId}/getAllQuotes"**
-
 **"/getAllQuotes"**
 
 **"/getRandomQuote"**

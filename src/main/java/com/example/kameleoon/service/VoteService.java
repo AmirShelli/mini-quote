@@ -21,7 +21,7 @@ public class VoteService {
     @Transactional
     public void addVote(Long userId, Long quoteId, Vote vote) throws Exception {
         User user = userRepository.findById(userId).orElseThrow(()->new Exception("User not found by Id: " + userId));
-        Quote quote = quoteRepository.findById(quoteId).orElseThrow(()->new Exception("User not found by Id: " + userId));
+        Quote quote = quoteRepository.findById(quoteId).orElseThrow(()->new Exception("Quote not found by Id: " + userId));
         if (quote.getVotes().stream().anyMatch(v -> v.getUser().getUserId().equals(userId))) {
             throw new Exception("User has already voted for this quote.");
         }

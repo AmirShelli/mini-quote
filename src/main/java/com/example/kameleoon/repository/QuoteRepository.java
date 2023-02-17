@@ -12,8 +12,8 @@ import java.util.Optional;
 @Repository
 public interface QuoteRepository extends JpaRepository<Quote, Long> {
     Optional<Quote> findAllByUser(User user);
-    @Query("SELECT q, count(v.value) as voteCount FROM Quote q LEFT JOIN q.votes v GROUP BY q ORDER BY voteCount DESC")
+    @Query("SELECT q FROM Quote q ORDER BY q.numberOfVotes DESC")
     List<Quote> findTopTenQuotes();
-    @Query("SELECT q, count(v.value) as voteCount FROM Quote q LEFT JOIN q.votes v GROUP BY q ORDER BY voteCount ASC")
+    @Query("SELECT q FROM Quote q ORDER BY q.numberOfVotes ASC")
     List<Quote> findFlopTenQuotes();
 }

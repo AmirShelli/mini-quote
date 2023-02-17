@@ -31,7 +31,7 @@ public class User {
     private String email;
     @CreationTimestamp
     @Column(name = "created_At", updatable = false)
-    @Getter @Setter
+    @Getter
     private Timestamp createdAt;
     @Column(name = "logged_In")
     @Getter @Setter

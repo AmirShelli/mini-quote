@@ -13,7 +13,7 @@ CREATE TABLE "QUOTE" (
                         quote_Id INT AUTO_INCREMENT  PRIMARY KEY,
                         user_Id INT NOT NULL,
                         text VARCHAR(3000) NOT NULL,
-                        created_At DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                        created_At DATE DEFAULT CURRENT_TIMESTAMP,
                         votes INT,
                         foreign key (user_Id) references USERS(user_Id)
 
@@ -27,3 +27,4 @@ CREATE TABLE VOTE (
                       FOREIGN KEY (quote_id) REFERENCES QUOTE (quote_id),
                       UNIQUE (user_id, quote_id)
 );
+
