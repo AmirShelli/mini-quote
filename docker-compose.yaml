@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=FALSE
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.h2.Driver
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD:
+  db:
+    image: "docker.io/library/h2:1.4.200"
+    command: "-ifNotExists -tcp -tcpAllowOthers -tcpPort 9092"
+    ports:
+      - "9092:9092"

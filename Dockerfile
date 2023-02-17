@@ -1,7 +1,9 @@
-FROM openjdk:17
+FROM openjdk:17-jdk-alpine
+
+COPY . /app
 
 WORKDIR /app
 
-COPY target/mini-quote-app.jar mini-quote-app.jar
+COPY target/kameleoon-0.0.1-SNAPSHOT.jar app.jar
 
-ENTRYPOINT ["java", "-cp", "mini-quote-app.jar", "-Dloader.main=com.example.kameleoon.KameleoonApplication", "org.springframework.boot.loader.PropertiesLauncher", "--host", "0.0.0.0:8000"]
+ENTRYPOINT ["java", "-cp", "app.jar", "-Dloader.main=com.example.kameleoon.KameleoonApplication", "org.springframework.boot.loader.PropertiesLauncher"]

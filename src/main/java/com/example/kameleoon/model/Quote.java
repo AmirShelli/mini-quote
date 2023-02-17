@@ -22,7 +22,7 @@ public class Quote {
     @Column(name = "votes")
     @Getter
     private Integer numberOfVotes;
-    @Column(name = "created_At", nullable = false)
+    @Column(name = "created_At")
     @Getter @Setter
     private Timestamp createdAt;
     @ManyToOne
@@ -52,6 +52,7 @@ public class Quote {
         User user = this.getUser();
         sb.append(this.getText()).append(" | ")
                 .append(this.getNumberOfVotes()).append(" ")
+                .append(createdAt.toString()).append(" ")
                 .append(user.getName()).append("\n");
         return sb.toString();
     }
