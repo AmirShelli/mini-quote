@@ -1,6 +1,6 @@
 # Mini-quote
 
-A simple web-application using Spring framework and an in-memory database that enables you to create users for them to post quotes and vote for them. 
+A simple web-application using Spring framework and an in-memory database that enables you to create users, post quotes and vote for them. 
 
 ## Launch
 
