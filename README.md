@@ -2,7 +2,7 @@
 
 A simple web-application using Spring framework and an in-memory database that enables you to create users for them to post quotes and vote for them. 
 
-## Installation
+## Launch
 
 Use the docker container from [my docker hub](https://hub.docker.com/repository/docker/thebluemitsu/kameleoon-trial-test/) to launch mini-quote.
 
