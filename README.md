@@ -1,51 +1,58 @@
-I'm testing my API with Postman using raw JSON.
-Here is what you can test.
+# Mini-quote
 
-**"/register"**
+A simple web-application using Spring framework and an in-memory database that enables you to create users, post quotes and vote for them. 
 
-// first user in /register
-`{
-"name": "John Doe",
-"email": "johndoe@example.com",
-"password": "password"
-}`
+## Launch
 
-// second user in /register
-`{
-"name": "John Snow",
-"email": "johnsnow@example.com",
-"password": "password"
-}`
+Use the docker container from [my docker hub](https://hub.docker.com/repository/docker/thebluemitsu/kameleoon-trial-test/) to launch mini-quote.
 
-**"/{user_Id}/addQuote"**
+```bash
+docker pull thebluemitsu/kameleoon-trial-test:kameleoon-test
+docker run -t -p 80:8000 thebluemitsu/kameleoon-trial-test:kameleoon-test
+```
 
-// first quote in /1/addQuote
-`{
-"text": "hello, my name is John. I'm new to mini-reddit"
-}`
+## Usage
+I use Postman to test the application, however you can use any other way to send a request to the server.
 
-// second quote in /1/addQuote
-`{
-"text": "hello, how are y'all doing?!"
+Here are the available endpoints; 
+### from UserController
+You can use the following JSON structure to create a user.
+* #### /register
+```json
+{
+    "name": "name",
+    "email": "name@example.com",
+    "password": "password"
 }
-`
-**"/{user_Id}/{quote_Id}/updateQuote"**
+```
+### from QuoteController
+You can use the following JSON structure to add/update the needed quote accordingly or delete the quote from the database. 
+* #### /{user_Id}/addQuote
+```json
+{
+    "text": "hello, my name is Amir. I'm new to mini-quote."
+}
+```
+* #### /{user_Id}/{quote_Id}/updateQuote
+```json
+{
+    "text": "I think I changed my mind."
+}
+```
+* #### /{user_Id}/{quote_Id}/deleteQuote
+### from VoteController
+These endpoints allow you to up/down vote a quote.
+* #### /{user_Id}/{quote_Id}/upVote
+* #### /{user_Id}/{quote_Id}/downVote
+>Note: each user can up/down vote a quote only once!
+### from ViewController
+These endpoints allow you to view the quotes with different parameters.
+* #### /getAllQuotes
+* #### /getRandomQuote
+* #### /topTenQuotes
+* #### /flopTenQuotes
 
-// second quote in /1/2/updateQuote
-`{
-"text": "hello, how are you all doing?"
-}`
+## Example
+![image](https://user-images.githubusercontent.com/42302276/219621083-f08711e3-5dad-48e2-af01-ff75c01e9b72.png)
 
-**"/{user_Id}/{quote_Id}/deleteQuote"**
-
-**"/{userId}/{quoteId}/upVote"** 
-
-**"/{userId}/{quoteId}/downVote"**
-
-**"/topTenQuotes"**
-
-**"/flopTenQuotes"**
-
-**"/getAllQuotes"**
-
-**"/getRandomQuote"**
+>Note: docker-compose.yaml file isn't set up properly just yet.
