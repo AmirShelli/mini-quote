@@ -1,9 +1,8 @@
-name: kameleoon-test
+name: kameleoon
 services:
   app:
-    build:
-      dockerfile: ./Dockerfile
-    image: thebluemitsu/kameleoon-trial-test:kameleoon-test
+    build: .
+    image: openjdk:17-jdk-alpine
     ports:
       - "8000:8000"
     volumes:
@@ -13,3 +12,10 @@ services:
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.h2.Driver
       SPRING_DATASOURCE_USERNAME: sa
       SPRING_DATASOURCE_PASSWORD:
+#    db:
+#      ports:
+#        - "80:80"
+#      volumes:
+#        - app/data
+volumes:
+  app:

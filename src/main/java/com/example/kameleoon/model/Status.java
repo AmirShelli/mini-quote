@@ -5,9 +5,9 @@ import org.springframework.http.ResponseEntity;
 
 public enum Status {
     SUCCESS(HttpStatus.OK),
-    FAILURE(HttpStatus.BAD_REQUEST),
-    USER_DOES_NOT_EXIST(HttpStatus.NOT_FOUND),
-    USER_ALREADY_EXISTS(HttpStatus.IM_USED);
+    FAILURE(HttpStatus.BAD_REQUEST);
+//    USER_DOES_NOT_EXIST(HttpStatus.NOT_FOUND),
+//    USER_ALREADY_EXISTS(HttpStatus.IM_USED);
 
     private final HttpStatus httpStatus;
 

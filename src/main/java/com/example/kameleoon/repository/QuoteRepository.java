@@ -14,7 +14,7 @@ public interface QuoteRepository extends JpaRepository<Quote, Long> {
     @Query("SELECT q FROM Quote q WHERE q.user=:user")
     List<Quote> findAllByUser(User user);
     @Query("SELECT q FROM Quote q ORDER BY q.numberOfVotes DESC")
-    List<Quote> findTopTenQuotes();
+    List<Quote> getOrderedQuotesDesc();
     @Query("SELECT q FROM Quote q ORDER BY q.numberOfVotes ASC")
-    List<Quote> findFlopTenQuotes();
+    List<Quote> getOrderedQuotesAsc();
 }
