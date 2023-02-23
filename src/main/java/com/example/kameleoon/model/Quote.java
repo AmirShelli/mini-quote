@@ -14,7 +14,7 @@ public class Quote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "quote_Id")
-    @Getter
+    @Getter @Setter
     private Long quoteId;
     @Column(nullable = false)
     @Getter @Setter
@@ -60,5 +60,9 @@ public class Quote {
 
         this.numberOfVotes = 0;
         this.votes = new ArrayList<>();
+    }
+
+    public void setId(Long quoteId) {
+        this.quoteId = quoteId;
     }
 }
