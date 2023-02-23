@@ -33,19 +33,12 @@ public class ViewService {
     public List<Quote> getAllQuotes() {
         return quoteRepository.findAll();
     }
-    public List<Quote> getTopTenQuotes() {
-        List<Quote> resultList = quoteRepository.getOrderedQuotesDesc();
-        List<Quote> topTenQuotes = new ArrayList<>();
+    public List<Quote> getTopOrFlopTenQuotes(boolean isTop) {
+        List<Quote> resultList = isTop ? quoteRepository.getOrderedQuotesDesc() : quoteRepository.getOrderedQuotesAsc();
+        List<Quote> topOrFlopTenQuotes = new ArrayList<>();
         for (int i = 0; i < Math.min(10, resultList.size()); i++)
-            topTenQuotes.add(resultList.get(i));
-        return topTenQuotes;
-    }
-    public List<Quote> getFlopTenQuotes() {
-        List<Quote> resultList = quoteRepository.getOrderedQuotesAsc();
-        List<Quote> topTenQuotes = new ArrayList<>();
-        for (int i = 0; i < Math.min(10, resultList.size()); i++)
-            topTenQuotes.add(resultList.get(i));
-        return topTenQuotes;
+            topOrFlopTenQuotes.add(resultList.get(i));
+        return topOrFlopTenQuotes;
     }
 
     public String listToString(List<Quote> quotes) {

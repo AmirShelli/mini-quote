@@ -16,12 +16,12 @@ public class ViewController {
     }
     @GetMapping("/topTenQuotes")
     public ResponseEntity<String> viewTopTenQuotes() {
-        return Status.SUCCESS.toResponseEntity(viewService.listToString(viewService.getTopTenQuotes()));
+        return Status.SUCCESS.toResponseEntity(viewService.listToString(viewService.getTopOrFlopTenQuotes(true)));
     }
 
     @GetMapping("/flopTenQuotes")
     public ResponseEntity<String> viewFlopTenQuotes() {
-        return Status.SUCCESS.toResponseEntity(viewService.listToString(viewService.getFlopTenQuotes()));
+        return Status.SUCCESS.toResponseEntity(viewService.listToString(viewService.getTopOrFlopTenQuotes(false)));
     }
     @GetMapping("/{userId}/getAllQuotes")
     public ResponseEntity<String> getAllQuotesFromUser(@PathVariable @RequestAttribute("userId") Long userId) {
