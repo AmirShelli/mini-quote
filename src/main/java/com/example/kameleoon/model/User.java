@@ -18,7 +18,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "user_Id")
-    @Getter
+    @Getter @Setter
     private Long userId;
     @Column(nullable = false)
     @Getter @Setter
@@ -31,7 +31,7 @@ public class User {
     private String email;
     @CreationTimestamp
     @Column(name = "created_At", updatable = false)
-    @Getter
+    @Getter @Setter
     private Timestamp createdAt;
     @Column(name = "logged_In")
     @Getter @Setter
@@ -77,5 +77,9 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(userId, name, password, email, createdAt);
+    }
+
+    public void setId(Long userId) {
+        this.userId = userId;
     }
 }
