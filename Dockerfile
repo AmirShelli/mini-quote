@@ -1,9 +1,9 @@
 FROM openjdk:17-jdk-alpine
 
-COPY . /app
+EXPOSE 8000
 
-WORKDIR /app
+RUN mkdir ./app
 
-COPY target/kameleoon-0.0.1-SNAPSHOT.jar app.jar
+COPY ./target/kameleoon-0.0.1-SNAPSHOT.jar ./app
 
-ENTRYPOINT ["java", "-cp", "app.jar", "-Dloader.main=com.example.kameleoon.KameleoonApplication", "org.springframework.boot.loader.PropertiesLauncher"]
+ENTRYPOINT ["java", "-jar", "./app/kameleoon-0.0.1-SNAPSHOT.jar"]

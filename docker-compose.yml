@@ -1,21 +1,11 @@
-name: kameleoon
+version: "3"
 services:
   app:
     build: .
-    image: openjdk:17-jdk-alpine
     ports:
       - "8000:8000"
-    volumes:
-        - ./:/app
     environment:
       SPRING_DATASOURCE_URL: jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=FALSE
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.h2.Driver
       SPRING_DATASOURCE_USERNAME: sa
       SPRING_DATASOURCE_PASSWORD:
-#    db:
-#      ports:
-#        - "80:80"
-#      volumes:
-#        - app/data
-volumes:
-  app:
