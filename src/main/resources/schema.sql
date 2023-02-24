@@ -15,7 +15,7 @@ CREATE TABLE "QUOTE" (
                         text VARCHAR(3000) NOT NULL,
                         created_At DATE DEFAULT CURRENT_TIMESTAMP,
                         votes INT,
-                        foreign key (user_Id) references USERS(user_Id)
+                        foreign key (user_Id) references USERS(user_Id) ON DELETE CASCADE
 
 );
 CREATE TABLE VOTE (

@@ -20,7 +20,7 @@ public class Quote {
     @Getter @Setter
     private String text;
     @Column(name = "votes")
-    @Getter
+    @Getter @Setter
     private Integer numberOfVotes;
     @Column(name = "created_At")
     @Getter @Setter
@@ -30,7 +30,7 @@ public class Quote {
     @Getter @Setter
     private User user;
     @OneToMany(mappedBy = "quote")
-    @Getter
+    @Getter @Setter
     private List<Vote> votes;
     public void addVote(Vote vote) {
         if (votes == null || numberOfVotes == null) {
@@ -65,4 +65,5 @@ public class Quote {
     public void setId(Long quoteId) {
         this.quoteId = quoteId;
     }
+
 }
