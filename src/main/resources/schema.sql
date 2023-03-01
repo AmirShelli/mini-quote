@@ -23,6 +23,7 @@ CREATE TABLE VOTE (
                       user_id INT NOT NULL,
                       quote_id INT NOT NULL,
                       val INT DEFAULT 0,
+                      created_At DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
                       FOREIGN KEY (user_id) REFERENCES USERS (user_id),
                       FOREIGN KEY (quote_id) REFERENCES QUOTE (quote_id),
                       UNIQUE (user_id, quote_id)

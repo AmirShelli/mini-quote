@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Date;
+
 @Entity
 @Table(name = "VOTE")
 public class Vote {
@@ -25,7 +27,8 @@ public class Vote {
     @Column(name = "val", nullable = false)
     @Getter @Setter
     private Integer value;
-
+    @Column
+    private Date created_At;
     public Vote(int value) {
         this.value = value;
     }

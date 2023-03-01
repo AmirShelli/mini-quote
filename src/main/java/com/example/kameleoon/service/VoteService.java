@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class VoteService {
     @Autowired
@@ -33,4 +35,9 @@ public class VoteService {
         userRepository.save(user);
         quoteRepository.save(quote);
     }
+    public List<Vote> getOrderedVotes(Long quoteId) throws Exception {
+        Quote quote = quoteRepository.findById(quoteId).orElseThrow(()->new Exception("Quote not found by Id: " + quoteId));
+        return voteRepository.getVotesByQuote(quote);
+    }
+
 }
