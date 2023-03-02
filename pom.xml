@@ -58,7 +58,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.example.Main</mainClass>  <!-- Change com.example.Main to your main class -->
+                            <mainClass>com.example.kameleoon.KameleoonApplication</mainClass>  <!-- Change com.example.Main to your main class -->
                         </manifest>
                     </archive>
                 </configuration>
