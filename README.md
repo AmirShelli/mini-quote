@@ -4,13 +4,18 @@ A simple web-application using Spring framework and an in-memory database that e
 
 ## Launch
 
-Use the docker container from [my docker hub](https://hub.docker.com/repository/docker/thebluemitsu/kameleoon-trial-test/) to launch mini-quote.
+Use the docker container from [my docker hub repository](https://hub.docker.com/repository/docker/thebluemitsu/kameleoon-trial-test/) to launch mini-quote.
 
 ```bash
 docker pull thebluemitsu/kameleoon-trial-test:kameleoon-test
-docker run -t -p 80:8000 thebluemitsu/kameleoon-trial-test:kameleoon-test
+docker run -t -p 8000:8000 thebluemitsu/kameleoon-trial-test:kameleoon-test
 ```
-
+Or clone the project on your machine and build it using docker compose.
+```bash
+git clone git@github.com:bluMitsu/mini-quote.git kameleoon
+cd kameleoon
+docker compose up
+```
 ## Usage
 I use [Postman](https://web.postman.co) to test the application, however you can use any other way to send a request to the server.
 
@@ -55,4 +60,4 @@ These endpoints allow you to view the quotes with different parameters.
 ## Example
 ![image](https://user-images.githubusercontent.com/42302276/219646273-95616657-1c98-4ea8-a476-34ce9f7eedbb.png)
 
->Note: docker-compose.yaml file isn't set up properly just yet.
+>~~Note: docker-compose.yaml file isn't set up properly just yet.~~
