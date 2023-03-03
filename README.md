@@ -8,7 +8,7 @@ Use the docker container from [my docker hub repository](https://hub.docker.com/
 
 ```bash
 docker pull thebluemitsu/kameleoon-trial-test:kameleoon-test
-docker run -t -p 8000:8000 thebluemitsu/kameleoon-trial-test:kameleoon-test
+docker run -t -p 8000:8000 thebluemitsu/kameleoon-trial-test:latest
 ```
 Or clone the project on your machine and build it using docker compose.
 ```bash
